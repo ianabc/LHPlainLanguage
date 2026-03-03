@@ -6,9 +6,30 @@ function normalizeWord(raw: string): string {
 }
 
 export function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const total = EXAMPLES.length;
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    total > 0 ? Math.floor(Math.random() * total) : 0
+  );
   const [selectedWordIndex, setSelectedWordIndex] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
+  if (total === 0) {
+    return (
+      <div className="app-root">
+        <header className="app-header">
+          <h1>Plain English Word Game</h1>
+          <p className="subtitle">Add examples to start playing.</p>
+        </header>
+        <main>
+          <section className="game-card">
+            <p className="hint">
+              Add at least one entry in <code>src/data/examples.ts</code>.
+            </p>
+          </section>
+        </main>
+      </div>
+    );
+  }
 
   const currentExample: RedundancyExample = EXAMPLES[currentIndex];
 
@@ -24,8 +45,6 @@ export function App() {
       ),
     [words, currentExample.redundantWord]
   );
-
-  const total = EXAMPLES.length;
 
   function handleWordClick(index: number) {
     setSelectedWordIndex(index);
