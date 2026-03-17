@@ -120,7 +120,7 @@ export function App() {
                 <h2>Nice catch!</h2>
                 <p>
                   <strong>&ldquo;{currentExample.redundantWord}&rdquo;</strong> is
-                  redundant here, {currentExample.explaination}.</p>
+                  redundant here, {currentExample.explanation}.</p>
               </div>
             )}
 
